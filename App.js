@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react';
+import RouterComponent from './src/Router'
 import {
   Platform,
   StyleSheet,
@@ -23,6 +24,7 @@ export default class App extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
+        <RouterComponent />
       </View>
     );
   }
