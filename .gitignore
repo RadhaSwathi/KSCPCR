@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+*.jar
+android/app/build/intermediates/incremental/packageDebug/zip-cache/BW2XXHDpntCVN39AnP3f0LByaOM=
