@@ -2,5 +2,9 @@
     {
         "merged": "C:\\Users\\Radha Swathi\\Desktop\\projects\\KSCPCR\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
         "source": "C:\\Users\\Radha Swathi\\Desktop\\projects\\KSCPCR\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.49.5\\res\\xml\\preferences.xml"
+    },
+    {
+        "merged": "C:\\Users\\Radha Swathi\\Desktop\\RN\\KSCPCR\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
+        "source": "C:\\Users\\Radha Swathi\\Desktop\\RN\\KSCPCR\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.49.5\\res\\xml\\preferences.xml"
     }
 ]

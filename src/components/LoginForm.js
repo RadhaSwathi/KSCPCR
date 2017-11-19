@@ -15,8 +15,11 @@ import {
 } from 'react-native';
 
 export default class LoginForm extends Component<{}> {
+  static navigationOptions = {  };
   render() {
+    const { navigate } = this.props.navigation;
     return (
+
       <View style={styles.container}>
       <TextInput placeholder='user name or email'
       placeholderTextColor='rgba(255,255,255,255)'
@@ -33,11 +36,19 @@ export default class LoginForm extends Component<{}> {
       style={styles.input}
       ref={(input)=> this.passwordInput =input} />
       <TouchableOpacity style={styles.buttonContainer}>
+
       <Text style={styles.buttonText}>LOGIN</Text>
       </TouchableOpacity>
       <TouchableOpacity >
       <Text style={styles.buttonText}>Forgot Password?</Text>
       </TouchableOpacity>
+      <Text>Current Scene: { this.props.title }</Text>
+      <Button
+        title="Go to Jane's profile"
+        onPress={() =>
+          navigate('Dashboard')
+        }
+      />
       </View>
     );
   }

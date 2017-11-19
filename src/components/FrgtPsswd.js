@@ -27,6 +27,7 @@ const instructions = Platform.select({
 
 
 export default class FrgtPsswd extends Component<{}> {
+static navigationOptions = { headerStyle:{ position: 'absolute', backgroundColor: 'transparent', zIndex: 100, top: 0, left: 0, right: 0 } };
   render() {
     return (
       <Image source={require('../images/LoginBg.jpeg')}
