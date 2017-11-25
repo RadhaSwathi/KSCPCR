@@ -99,9 +99,7 @@ export default class Login extends Component<{}> {
       </View>
       <Button color="#6E1307"
         title="Forgot password?"
-        onPress={() =>
-          navigate('FrgtPsswd')
-        }/>
+      onPress={Actions.FrgtPsswd}/>
       </KeyboardAvoidingView>
       </Image>
     );

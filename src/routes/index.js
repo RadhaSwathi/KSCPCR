@@ -16,32 +16,48 @@
 
 
 import React, { Component } from 'react';
+import {Text} from 'react-native'
 import {Scene,Router} from 'react-native-router-flux';
 import Login from '../components/Login';
 import Dashboard from '../components/Dashboard'
+import FrgtPsswd from '../components/FrgtPsswd'
+import DashboardZonal from '../components/DashboardZonal'
+import NewTicket from '../components/tabs/NewTicket'
+import ResolvedTicket from '../components/tabs/ResolvedTicket'
+
+
 const TabIcon = ({ selected, title }) => {
   return (
-    <Text style={{color: selected ? 'red' :'black'}}>{"title"}</Text>
+    <Text style={{color: selected ? 'red' :'black'}}>{"Active"}</Text>
   );
 }
+
+const TabIcon1 = ({ selected, title }) => {
+  return (
+    <Text style={{color: selected ? 'red' :'black'}}>{"Resolved"}</Text>
+  );
+}
+
+
 const RouterComponent =()=>{
 return(
-  <Router hideNavBar={false} sceneStyle={{top:55}}>
-  <Scene key='login' component={Login}  initial />
-  <Scene key='Dashboard' component={Dashboard} tabs={true}>
-            <Scene key="osu" title="OSU" icon={TabIcon}>
-              <Scene key="scarlet"
-                component={Login}
-                title="Scarlet"
-              />
-              <Scene
-                key="gray"
-                component={Login}
-                title="Gray"
-              />
+  <Router >
 
-            </Scene>
-              </Scene>
+      <Scene key='root'>
+        <Scene  key='login' component={Login} title='Login'sceneStyle={{top:55}}  initial />
+        <Scene  key="tabbar" tabs={true} hideNavBar={true} tabBarStyle={{ backgroundColor: '#FFFFFF' }} >
+        <Scene key="Ticketstatus1" title="Ticketstatus1" icon={TabIcon}>
+    <Scene key="Active" component={NewTicket} hideNavBar={true} title="Active"/>
+     </Scene>
+  <Scene key="Ticketstatus2" title="Ticketstatus2" icon={TabIcon1}>
+<Scene key="solved"  component={ResolvedTicket}   hideNavBar={true}  title="solved"   />
+</Scene>
+</Scene>
+<Scene  key='FrgtPsswd' component={FrgtPsswd} title='FrgtPsswd' />
+  <Scene initial key='Dashboard' component={Dashboard} title='Dashboard' />
+    <Scene  key='DashboardZonal' component={DashboardZonal} title='DashboardZonal' />
+</Scene>
+
 
   </Router>
 );

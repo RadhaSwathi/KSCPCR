@@ -1,37 +1,62 @@
 import React, { Component } from 'react';
+import {Router, Route, Schema, Animations, TabBar, Actions} from 'react-native-router-flux'
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
-  TextInput,
-  Image,
-  KeyboardAvoidingView,
-  StatusBar,
-  TouchableOpacity
+  Button,
+
 } from 'react-native';
 import LoginForm from './LoginForm';
 
-/*import NewTicket from './tabs/NewTicket';
-import InprogressTicket from './tabs/InprogressTicket';
-import ResolvedTicket from './tabs/ResolvedTicket';*/
 
-/*var Dashboard= TabNavigator({
-NewTicket: {screen: 'NewTicket'},
-Inprogress:{screen: 'InprogressTicket'},
-Resolved:{screen: 'ResolvedTicket'},
-});
-
-Dashboard.navigationOptions=
-{ headerStyle:{ position: 'absolute', backgroundColor: 'transparent', zIndex: 100, top: 0, left: 0, right: 0 } };*/
 export default class Dashboard extends Component<{}> {
+  state={zones: []};
+  componentWillMount()
+    {
+      fetch('http://wbdemo.in/kscpcr-v1.3/complaints/actions_android/fetch_all_zones.php').then(response => response.json())
+    .then(data => this.setState({ zones: data }));
+    }
+    renderZones()
+    {
+    return  this.state.zones.map(zone => <View key={zone.zone_id} style={styles.buttonContainer}><Button color="#6E1307"   onPress={()=>this.goToActiveTicket(zone.zone_id)} key={zone.zone_name} title={zone.zone_name}/></View>)
 
+    }
+    response(zoneId){
+  this.setZoneId(zoneId)
+      return ( fetch('http://wbdemo.in/kscpcr-v1.3/complaints/actions_android/fetch_active_complaints_zone_id_wise.php&zone_id=${zoneId}',{
+        method:'POST'
+  }).then((re)=>this.setResults(re)))
+    }
+    setZoneId(zoneId){
+      this.setState({
+        zoneId:zoneId
+      })
+
+    }
+    goToActiveTicket(zoneId)
+    {
+      this.response(zoneId)
+    }
+    setResults(results)
+    {
+      if (results.success!=0) {
+        Actions.tabbar({userName:this.props.username, results: results,zoneId:this.state.zoneId})
+
+      }else{
+        alert('invalid')
+      }
+
+    }
   render() {
-    console.log("***",this.props.results)
+    //console.log(this.state);
+  //  console.log("***",this.props.results)
     return (
     <View style={styles.container}>
-    <Text>{this.props.results[0].user_email_id
-}</Text>
+
+<View  >
+   {this.renderZones()}
+   </View>
     </View>
     );
   }
@@ -47,8 +72,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer:{
     backgroundColor:'#6E1307',
-    paddingVertical:15,
-    marginBottom:10
+    paddingVertical:5,
+    marginBottom:5
   },
   buttonText:{
     color:'#FFFFFF',
